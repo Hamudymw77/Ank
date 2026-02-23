@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Výsledky ankety</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="page">
+
+    <header class="hero">
+      <p class="eyebrow">📊 Výsledky</p>
+      <h1>{{ question }}</h1>
+      <p class="total">Celkem hlasů: <strong>{{ total }}</strong></p>
+
+      {% if already_voted %}
+        <div class="voted-banner">
+          ✅ Tvůj hlas byl zaznamenán
+          <span class="voted-choice">(hlasoval/a jsi pro: <strong>{{ already_voted }}</strong>)</span>
+        </div>
+      {% else %}
+        <a href="/" class="link-subtle">← Zpět na hlasování</a>
+      {% endif %}
+    </header>
+
+    <main class="card">
+      {% for item in stats %}
+      <div class="bar-row {% if already_voted == item.key %}bar-mine{% endif %}">
+        <div class="bar-meta">
+          <span class="bar-label">
+            {{ item.label }}
+            {% if already_voted == item.key %}
+              <span class="my-vote-tag">tvůj hlas</span>
+            {% endif %}
+          </span>
+          <span class="bar-right">
+            <span class="bar-pct">{{ item.pct }}%</span>
+            <span class="bar-count">({{ item.count }})</span>
+          </span>
+        </div>
+        <div class="bar-track">
+          <div class="bar-fill" style="width: {{ item.pct }}%"></div>
+        </div>
+      </div>
+      {% endfor %}
+    </main>
+
+    <!-- Admin reset -->
+    <section class="card card-reset">
+      <p class="reset-label">🔐 Reset ankety (pouze admin)</p>
+      <form action="/reset" method="POST" class="reset-form">
+        <input type="password" name="token" placeholder="Admin token" class="reset-input" required />
+        <button type="submit" class="btn-reset">Vynulovat hlasy</button>
+      </form>
+    </section>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anketa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="page">
+
+    <header class="hero">
+      <p class="eyebrow">🪐 Anketa</p>
+      <h1>{{ question }}</h1>
+      <a href="/results" class="link-subtle">Zobrazit výsledky bez hlasování →</a>
+    </header>
+
+    <main class="card">
+      <form action="/vote" method="POST">
+        {% for key, label in options.items() %}
+        <label class="option">
+          <input type="radio" name="choice" value="{{ key }}" required />
+          <span class="option-body">
+            <span class="radio-ring"></span>
+            <span class="option-text">{{ label }}</span>
+          </span>
+        </label>
+        {% endfor %}
+
+        <button type="submit" class="btn-vote">Hlasovat →</button>
+      </form>
+    </main>
+
+    <p class="info-note">ℹ️ Každý prohlížeč může hlasovat pouze jednou. Po odeslání nelze hlas změnit.</p>
+
+  </div>
+</body>
+</html>
