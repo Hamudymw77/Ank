@@ -8,12 +8,10 @@ app = Flask(__name__)
 # ── Konfigurace ─────────────────────────────────────────────────────────────
 ADMIN_TOKEN  = "mojetajneheslo"
 COOKIE_NAME  = "has_voted"
-COOKIE_DAYS  = 30
-
-# TENTO ŘÁDEK JE KLÍČOVÝ: Zajistí správnou cestu na jakémkoliv serveru
-BASE_DIR     = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR     = os.path.join(BASE_DIR, "data")
+COOKIE_DAYS  = 30          # jak dlouho platí cookie (dní)
+DATA_DIR     = os.path.join(os.path.dirname(__file__), "data")
 VOTES_FILE   = os.path.join(DATA_DIR, "votes.json")
+
 # ── Otázka a možnosti ───────────────────────────────────────────────────────
 QUESTION = "Jaká je největší planeta Sluneční soustavy?"
 

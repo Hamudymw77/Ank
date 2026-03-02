@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  anketa:
+    build: .
+    ports:
+      - "4500:5000"
+    volumes:
+      - ./data:/app/data     # hlasy přežijí restart kontejneru
+    environment:
+      - ADMIN_TOKEN=mojetajneheslo
+    restart: unless-stopped
