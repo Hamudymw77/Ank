@@ -1,9 +1,0 @@
-services:
-  - type: web
-    name: anketa
-    runtime: python
-    buildCommand: pip install flask gunicorn
-    startCommand: gunicorn app:app
-    envVars:
-      - key: ADMIN_TOKEN
-        value: mojetajneheslo
