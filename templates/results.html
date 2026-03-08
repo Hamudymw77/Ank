@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Výsledky ankety</title>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NMCXHBY6GV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NMCXHBY6GV');
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
@@ -48,7 +55,6 @@
       {% endfor %}
     </main>
 
-    <!-- Admin reset -->
     <section class="card card-reset">
       <p class="reset-label">🔐 Reset ankety (pouze admin)</p>
       <form action="/reset" method="POST" class="reset-form">
@@ -56,6 +62,11 @@
         <button type="submit" class="btn-reset">Vynulovat hlasy</button>
       </form>
     </section>
+
+    <p class="info-note" style="margin-top: 20px; line-height: 1.5;">
+      <strong>Zpětná vazba a hlášení chyb</strong><br>
+      Objevili jste v aplikaci technický problém nebo chybu v textu? Budeme rádi za upozornění. Technické nedostatky doporučujeme hlásit přímo do <a href="https://github.com/Hamudymw77/Ank/issues" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">GitHub repozitáře</a>.
+    </p>
 
   </div>
 </body>
