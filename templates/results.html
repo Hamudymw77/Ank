@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Výsledky ankety</title>
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NMCXHBY6GV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -55,18 +56,13 @@
       {% endfor %}
     </main>
 
-    <section class="card card-reset">
-      <p class="reset-label">🔐 Reset ankety (pouze admin)</p>
-      <form action="/reset" method="POST" class="reset-form">
-        <input type="password" name="token" placeholder="Admin token" class="reset-input" required />
-        <button type="submit" class="btn-reset">Vynulovat hlasy</button>
-      </form>
-    </section>
-
-    <p class="info-note" style="margin-top: 20px; line-height: 1.5;">
-      <strong>Zpětná vazba a hlášení chyb</strong><br>
-      Objevili jste v aplikaci technický problém nebo chybu v textu? Budeme rádi za upozornění. Technické nedostatky doporučujeme hlásit přímo do <a href="https://github.com/Hamudymw77/Ank/issues" target="_blank" style="color: var(--accent); text-decoration: none; font-weight: 600;">GitHub repozitáře</a>.
-    </p>
+    <footer class="bug-footer">
+      <p class="bug-title">🐛 Zpětná vazba a hlášení chyb</p>
+      <p class="bug-desc">Objevili jste v aplikaci technický problém nebo chybu v textu? Budeme rádi za upozornění. Technické nedostatky doporučujeme hlásit přímo do GitHub repozitáře.</p>
+      <a href="https://github.com/Hamudymw77/Ank/issues" target="_blank" class="bug-link">
+        https://github.com/Hamudymw77/Ank/issues →
+      </a>
+    </footer>
 
   </div>
 </body>
