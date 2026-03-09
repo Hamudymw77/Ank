@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="{{ t.lang_code }}">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Výsledky ankety</title>
+  <title>Výsledky / Results</title>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NMCXHBY6GV"></script>
   <script>
@@ -19,18 +19,24 @@
 <body>
   <div class="page">
 
+    <div class="lang-bar">
+      <a href="{{ url_for('set_lang', code=t.lang_switch_code, next=request.path) }}" class="lang-btn">
+        🌐 {{ t.lang_switch_label }}
+      </a>
+    </div>
+
     <header class="hero">
-      <p class="eyebrow">📊 Výsledky</p>
-      <h1>{{ question }}</h1>
-      <p class="total">Celkem hlasů: <strong>{{ total }}</strong></p>
+      <p class="eyebrow">{{ t.eyebrow_results }}</p>
+      <h1>{{ t.question }}</h1>
+      <p class="total">{{ t.total_votes }} <strong>{{ total }}</strong></p>
 
       {% if already_voted %}
         <div class="voted-banner">
-          ✅ Tvůj hlas byl zaznamenán
-          <span class="voted-choice">(hlasoval/a jsi pro: <strong>{{ already_voted }}</strong>)</span>
+          {{ t.voted_banner }}
+          <span class="voted-choice">({{ t.voted_for }} <strong>{{ already_voted }}</strong>)</span>
         </div>
       {% else %}
-        <a href="/" class="link-subtle">← Zpět na hlasování</a>
+        <a href="/" class="link-subtle">{{ t.back_to_vote }}</a>
       {% endif %}
     </header>
 
@@ -41,7 +47,7 @@
           <span class="bar-label">
             {{ item.label }}
             {% if already_voted == item.key %}
-              <span class="my-vote-tag">tvůj hlas</span>
+              <span class="my-vote-tag">{{ t.my_vote }}</span>
             {% endif %}
           </span>
           <span class="bar-right">
@@ -56,11 +62,19 @@
       {% endfor %}
     </main>
 
+    <section class="card card-reset">
+      <p class="reset-label">{{ t.reset_label }}</p>
+      <form action="/reset" method="POST" class="reset-form">
+        <input type="password" name="token" placeholder="{{ t.reset_placeholder }}" class="reset-input" required />
+        <button type="submit" class="btn-reset">{{ t.reset_btn }}</button>
+      </form>
+    </section>
+
     <footer class="bug-footer">
-      <p class="bug-title">🐛 Zpětná vazba a hlášení chyb</p>
-      <p class="bug-desc">Objevili jste v aplikaci technický problém nebo chybu v textu? Budeme rádi za upozornění. Technické nedostatky doporučujeme hlásit přímo do GitHub repozitáře.</p>
+      <p class="bug-title">{{ t.bug_title }}</p>
+      <p class="bug-desc">{{ t.bug_desc }}</p>
       <a href="https://github.com/Hamudymw77/Ank/issues" target="_blank" class="bug-link">
-        https://github.com/Hamudymw77/Ank/issues →
+        {{ t.bug_link }}
       </a>
     </footer>
 
